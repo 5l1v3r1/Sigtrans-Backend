@@ -1,6 +1,6 @@
 package payroll.order;
 
-enum Status {
+public enum Status {
     IN_PROGRESS,
     COMPLETED,
     CANCELLED;
