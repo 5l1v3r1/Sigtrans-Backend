@@ -1,26 +1,39 @@
 package com.sigtrans.sigtrans.service.implementor;
 
-import com.sigtrans.sigtrans.model.endereco.estado.EstadoResourceAssembler;
 import com.sigtrans.sigtrans.model.endereco.estado.Estado;
+import com.sigtrans.sigtrans.model.endereco.estado.EstadoNotFoundException;
+import com.sigtrans.sigtrans.model.endereco.municipio.Municipio;
+import com.sigtrans.sigtrans.model.endereco.municipio.MunicipioNotFoundException;
 import com.sigtrans.sigtrans.repository.EstadoRepository;
+import com.sigtrans.sigtrans.repository.MunicipioRepository;
 import com.sigtrans.sigtrans.service.interfac.IEnderecoService;
-import org.springframework.hateoas.Resource;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Component
 public class EnderecoService implements IEnderecoService {
-    public final EstadoRepository estadoRepository;
-    private final EstadoResourceAssembler stateAssembler;
+    private final EstadoRepository estadoRepository;
+    private final MunicipioRepository municipioRepository;
 
-    public EnderecoService(EstadoRepository estadoRepository, EstadoResourceAssembler stateAssembler) {
+    public EnderecoService(EstadoRepository estadoRepository, MunicipioRepository municipioRepository) {
         this.estadoRepository = estadoRepository;
-        this.stateAssembler = stateAssembler;
+        this.municipioRepository = municipioRepository;
     }
 
-    public Set<Resource<Estado>> FindAllStates() {
-        return estadoRepository.findAll().stream().map(stateAssembler::toResource).collect(Collectors.toSet());
+    public List<Estado> FindAllStates() {
+        return estadoRepository.findAll();
+    }
+
+    public Estado FindStateById(Long id) {
+        return estadoRepository.findById(id).orElseThrow(() -> new EstadoNotFoundException(id));
+    }
+
+    public List<Municipio> FindAllCities() {
+        return municipioRepository.findAll();
+    }
+
+    public Municipio FindCityById(Long id) {
+        return municipioRepository.findById(id).orElseThrow(() -> new MunicipioNotFoundException(id));
     }
 }
