@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -13,10 +14,10 @@ public class Estado {
 
     private @Id
     @GeneratedValue
-    Long id;
+    UUID id;
 
     @Column(name = "id_parceiro")
-    private long idParceiro;
+    private UUID idParceiro;
 
     @Column(name = "nome_estado")
     private String nome;
@@ -27,7 +28,7 @@ public class Estado {
     public Estado() {
     }
 
-    public Estado(long idParceiro, String nome, String sigla) {
+    public Estado(UUID idParceiro, String nome, String sigla) {
         this.idParceiro = idParceiro;
         this.nome = nome;
         this.sigla = sigla;

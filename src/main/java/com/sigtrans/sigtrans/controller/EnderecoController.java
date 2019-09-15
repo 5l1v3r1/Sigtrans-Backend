@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -40,7 +41,7 @@ public class EnderecoController {
     }
 
     @GetMapping("/estado/{id}")
-    public Resource<Estado> oneState(@PathVariable Long id) {
+    public Resource<Estado> oneState(@PathVariable UUID id) {
         Estado state = service.FindStateById(id);
         return stateAssembler.toResource(state);
     }
@@ -53,7 +54,7 @@ public class EnderecoController {
 
     // Single item
     @GetMapping("/municipio/{id}")
-    public Resource<Municipio> oneCity(@PathVariable Long id) {
+    public Resource<Municipio> oneCity(@PathVariable UUID id) {
         Municipio city = service.FindCityById(id);
         return cityAssembler.toResource(city);
     }

@@ -10,6 +10,7 @@ import com.sigtrans.sigtrans.service.interfac.IEnderecoService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class EnderecoService implements IEnderecoService {
@@ -25,7 +26,7 @@ public class EnderecoService implements IEnderecoService {
         return estadoRepository.findAll();
     }
 
-    public Estado FindStateById(Long id) {
+    public Estado FindStateById(UUID id) {
         return estadoRepository.findById(id).orElseThrow(() -> new EstadoNotFoundException(id));
     }
 
@@ -33,7 +34,7 @@ public class EnderecoService implements IEnderecoService {
         return municipioRepository.findAll();
     }
 
-    public Municipio FindCityById(Long id) {
+    public Municipio FindCityById(UUID id) {
         return municipioRepository.findById(id).orElseThrow(() -> new MunicipioNotFoundException(id));
     }
 }
