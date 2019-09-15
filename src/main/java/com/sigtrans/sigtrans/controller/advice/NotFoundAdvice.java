@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class EstadoNotFoundAdvice {
+public class NotFoundAdvice {
     @ResponseBody
     @ExceptionHandler(EstadoNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

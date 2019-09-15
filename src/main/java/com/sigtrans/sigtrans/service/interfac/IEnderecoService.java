@@ -7,4 +7,5 @@ import java.util.Set;
 
 public interface IEnderecoService {
     Set<Resource<Estado>> FindAllStates();
+    Resource<Estado> FindState(Long id);
 }

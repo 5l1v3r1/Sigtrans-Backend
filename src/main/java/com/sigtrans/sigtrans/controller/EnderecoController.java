@@ -26,18 +26,29 @@ public class EnderecoController {
         this.stateAssembler = stateAssembler;
     }
 
-    // Aggregate root
     @GetMapping("/endereco/estado")
     public Resources<Resource<Estado>> allStates() {
         Set<Resource<Estado>> states = service.FindAllStates();
         return new Resources<>(states, linkTo(methodOn(EnderecoController.class).allStates()).withSelfRel());
     }
 
-    // Single item
     @GetMapping("/endereco/estado/{id}")
     public Resource<Estado> oneState(@PathVariable Long id) {
         Estado employee = service.estadoRepository.findById(id)
                 .orElseThrow(() -> new EstadoNotFoundException(id));
+        return stateAssembler.toResource(employee);
+    }
+
+    @GetMapping("/endereco/municipio")
+    public Resources<Resource<Estado>> allCities() {
+        Set<Resource<Estado>> states = service.FindAllStates();
+        return new Resources<>(states, linkTo(methodOn(EnderecoController.class).allStates()).withSelfRel());
+    }
+
+    // Single item
+    @GetMapping("/endereco/municipio/{id}")
+    public Resource<Estado> oneCity(@PathVariable Long id) {
+        Estado employee = service.FindState(id);
         return stateAssembler.toResource(employee);
     }
 
