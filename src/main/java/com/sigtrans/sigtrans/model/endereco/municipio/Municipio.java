@@ -2,10 +2,8 @@ package com.sigtrans.sigtrans.model.endereco.municipio;
 
 import com.sigtrans.sigtrans.model.endereco.estado.Estado;
 import lombok.Data;
-import org.hibernate.id.GUIDGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.UUID;
 
 @Data

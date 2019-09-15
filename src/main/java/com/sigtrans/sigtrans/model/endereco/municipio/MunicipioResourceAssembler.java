@@ -12,9 +12,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class MunicipioResourceAssembler implements ResourceAssembler<Municipio, Resource<Municipio>> {
     @Override
     public Resource<Municipio> toResource(Municipio city) {
-
         return new Resource<>(city,
                 linkTo(methodOn(EnderecoController.class).oneCity(city.getId())).withSelfRel(),
-                linkTo(methodOn(EnderecoController.class).allCities()).withRel("employees"));
+                linkTo(methodOn(EnderecoController.class).allCities()).withRel("cities"));
     }
 }
