@@ -47,8 +47,8 @@ public class EnderecoController {
 
     @GetMapping("/municipio")
     public Resources allCities() {
-        Set<Resource<Municipio>> states = service.FindAllCities().stream().map(cityAssembler::toResource).collect(Collectors.toSet());
-        return new Resources<>(Collections.singleton(states), linkTo(methodOn(EnderecoController.class).allCities()).withSelfRel());
+        Set<Resource<Municipio>> cities = service.FindAllCities().stream().map(cityAssembler::toResource).collect(Collectors.toSet());
+        return new Resources<>(Collections.singleton(cities), linkTo(methodOn(EnderecoController.class).allCities()).withSelfRel());
     }
 
     // Single item
