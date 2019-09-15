@@ -15,6 +15,6 @@ public class MunicipioResourceAssembler implements ResourceAssembler<Municipio, 
 
         return new Resource<>(city,
                 linkTo(methodOn(EnderecoController.class).oneCity(city.getId())).withSelfRel(),
-                linkTo(methodOn(EnderecoController.class).allCities()).withRel("employees"));
+                linkTo(methodOn(EnderecoController.class).allCities()).withRel("cities"));
     }
 }
