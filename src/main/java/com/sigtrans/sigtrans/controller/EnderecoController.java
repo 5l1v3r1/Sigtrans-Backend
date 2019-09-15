@@ -1,15 +1,18 @@
 package com.sigtrans.sigtrans.controller;
 
-import com.sigtrans.sigtrans.model.endereco.Estado;
+import com.sigtrans.sigtrans.model.assemblers.EstadoResourceAssembler;
+import com.sigtrans.sigtrans.model.estado.Estado;
+import com.sigtrans.sigtrans.model.estado.EstadoNotFoundException;
 import com.sigtrans.sigtrans.service.implementor.EnderecoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Set;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -17,62 +20,26 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class EnderecoController {
 
     private final EnderecoService service;
+    private final EstadoResourceAssembler stateAssembler;
 
-    public EnderecoController(EnderecoService service) {
+    public EnderecoController(EnderecoService service, EstadoResourceAssembler stateAssembler) {
         this.service = service;
+        this.stateAssembler = stateAssembler;
     }
 
     // Aggregate root
-
     @GetMapping("/endereco/estado")
-    Resources<Resource<Estado>> all() {
+    public Resources<Resource<Estado>> allStates() {
         Set<Resource<Estado>> states = service.FindAllStates();
-
-        return new Resources<>(states, linkTo(methodOn(EnderecoController.class).all()).withSelfRel());
-    }
-
-    @PostMapping("/endereco/estado")
-    ResponseEntity<?> newEstado(@RequestBody Estado newEstado) throws URISyntaxException {
-        Resource<Estado> resource = assembler.toResource(service.estadoRepository.save(newEstado));
-        return ResponseEntity
-                .created(new URI(resource.getId().expand().getHref()))
-                .body(resource);
+        return new Resources<>(states, linkTo(methodOn(EnderecoController.class).allStates()).withSelfRel());
     }
 
     // Single item
-
     @GetMapping("/endereco/estado/{id}")
-    Resource<Estado> one(@PathVariable Long id) {
-
+    public Resource<Estado> oneState(@PathVariable Long id) {
         Estado employee = service.estadoRepository.findById(id)
                 .orElseThrow(() -> new EstadoNotFoundException(id));
-
-        return assembler.toResource(employee);
+        return stateAssembler.toResource(employee);
     }
 
-    @PutMapping("/endereco/estado/{id}")
-    ResponseEntity<?> replaceEstado(@RequestBody Estado newEstado,
-                                    @PathVariable Long id) throws URISyntaxException {
-
-        Estado updatedEstado = service.estadoRepository.findById(id)
-                .map(employee -> {
-                    employee.setName(newEstado.getName());
-                    employee.setRole(newEstado.getRole());
-                    return service.estadoRepository.save(employee);
-                })
-                .orElseGet(() -> {
-                    newEstado.setId(id);
-                    return service.estadoRepository.save(newEstado);
-                });
-        Resource<Estado> resource = assembler.toResource(updatedEstado);
-        return ResponseEntity
-                .created(new URI(resource.getId().expand().getHref()))
-                .body(resource);
-    }
-
-    @DeleteMapping("/employees/{id}")
-    ResponseEntity<?> deleteEstado(@PathVariable Long id) {
-        service.estadoRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
 }

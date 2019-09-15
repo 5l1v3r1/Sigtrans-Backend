@@ -1,4 +1,4 @@
-package com.sigtrans.sigtrans.model.endereco;
+package com.sigtrans.sigtrans.model.estado;
 
 import lombok.Data;
 
@@ -16,9 +16,9 @@ public class Estado {
     Long id;
 
     @Column(name = "id_parceiro")
-    private String idParceiro;
+    private long idParceiro;
 
-    @Column(name="nome_estado")
+    @Column(name = "nome_estado")
     private String nome;
 
     @Column(name = "sigla")
@@ -27,7 +27,7 @@ public class Estado {
     public Estado() {
     }
 
-    public Estado(String idParceiro, String nome, String sigla) {
+    public Estado(long idParceiro, String nome, String sigla) {
         this.idParceiro = idParceiro;
         this.nome = nome;
         this.sigla = sigla;

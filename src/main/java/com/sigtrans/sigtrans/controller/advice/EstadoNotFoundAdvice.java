@@ -1,5 +1,6 @@
-package payroll.employee;
+package com.sigtrans.sigtrans.controller.advice;
 
+import com.sigtrans.sigtrans.model.estado.EstadoNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -7,12 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class EmployeeNotFoundAdvice {
-
+public class EstadoNotFoundAdvice {
     @ResponseBody
-    @ExceptionHandler(EmployeeNotFoundException.class)
+    @ExceptionHandler(EstadoNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String employeeNotFoundHandler(EmployeeNotFoundException ex) {
+    public String estadoNotFoundHandler(EstadoNotFoundException ex) {
         return ex.getMessage();
     }
 }
