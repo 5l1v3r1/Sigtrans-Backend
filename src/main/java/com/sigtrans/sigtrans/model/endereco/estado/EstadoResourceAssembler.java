@@ -15,6 +15,6 @@ public class EstadoResourceAssembler implements ResourceAssembler<Estado, Resour
 
         return new Resource<>(state,
                 linkTo(methodOn(EnderecoController.class).oneState(state.getId())).withSelfRel(),
-                linkTo(methodOn(EnderecoController.class).allStates()).withRel("employees"));
+                linkTo(methodOn(EnderecoController.class).allStates()).withRel("states"));
     }
 }

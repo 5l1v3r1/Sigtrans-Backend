@@ -1,11 +1,16 @@
 package com.sigtrans.sigtrans.service.interfac;
 
 import com.sigtrans.sigtrans.model.endereco.estado.Estado;
-import org.springframework.hateoas.Resource;
+import com.sigtrans.sigtrans.model.endereco.municipio.Municipio;
 
-import java.util.Set;
+import java.util.List;
 
 public interface IEnderecoService {
-    Set<Resource<Estado>> FindAllStates();
-    Resource<Estado> FindState(Long id);
+    List<Estado> FindAllStates();
+
+    List<Municipio> FindAllCities();
+
+    Estado FindState(Long id);
+
+    Municipio FindCity(Long id);
 }
