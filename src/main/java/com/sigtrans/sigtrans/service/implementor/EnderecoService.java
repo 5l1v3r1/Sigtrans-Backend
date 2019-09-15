@@ -25,7 +25,7 @@ public class EnderecoService implements IEnderecoService {
         return estadoRepository.findAll();
     }
 
-    public Estado FindState(Long id) {
+    public Estado FindStateById(Long id) {
         return estadoRepository.findById(id).orElseThrow(() -> new EstadoNotFoundException(id));
     }
 
@@ -33,7 +33,7 @@ public class EnderecoService implements IEnderecoService {
         return municipioRepository.findAll();
     }
 
-    public Municipio FindCity(Long id) {
+    public Municipio FindCityById(Long id) {
         return municipioRepository.findById(id).orElseThrow(() -> new MunicipioNotFoundException(id));
     }
 }

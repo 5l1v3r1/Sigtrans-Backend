@@ -10,7 +10,7 @@ public interface IEnderecoService {
 
     List<Municipio> FindAllCities();
 
-    Estado FindState(Long id);
+    Estado FindStateById(Long id);
 
-    Municipio FindCity(Long id);
+    Municipio FindCityById(Long id);
 }

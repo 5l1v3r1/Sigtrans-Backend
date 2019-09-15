@@ -41,7 +41,7 @@ public class EnderecoController {
 
     @GetMapping("/estado/{id}")
     public Resource<Estado> oneState(@PathVariable Long id) {
-        Estado state = service.FindState(id);
+        Estado state = service.FindStateById(id);
         return stateAssembler.toResource(state);
     }
 
@@ -54,7 +54,7 @@ public class EnderecoController {
     // Single item
     @GetMapping("/municipio/{id}")
     public Resource<Municipio> oneCity(@PathVariable Long id) {
-        Municipio city = service.FindCity(id);
+        Municipio city = service.FindCityById(id);
         return cityAssembler.toResource(city);
     }
 
