@@ -13,11 +13,10 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(EstadoRepository estadoRepository) {
         estadoRepository.save(new Estado(-1, "Paraná", "PR"));
-        estadoRepository.findAll().forEach(order -> {
-            log.info("Preloaded " + order);
-        });
         return args -> {
-            log.info("Lul");
+            estadoRepository.findAll().forEach(estado -> {
+                log.info("Preloaded " + estado);
+            });
         };
     }
 }

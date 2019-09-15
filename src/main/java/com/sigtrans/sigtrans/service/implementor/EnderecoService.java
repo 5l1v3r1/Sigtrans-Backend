@@ -1,6 +1,6 @@
 package com.sigtrans.sigtrans.service.implementor;
 
-import com.sigtrans.sigtrans.model.assemblers.EstadoResourceAssembler;
+import com.sigtrans.sigtrans.model.estado.EstadoResourceAssembler;
 import com.sigtrans.sigtrans.model.estado.Estado;
 import com.sigtrans.sigtrans.repository.EstadoRepository;
 import com.sigtrans.sigtrans.service.interfac.IEnderecoService;

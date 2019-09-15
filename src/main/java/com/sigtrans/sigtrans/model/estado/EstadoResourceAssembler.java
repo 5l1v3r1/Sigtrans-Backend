@@ -1,4 +1,4 @@
-package com.sigtrans.sigtrans.model.assemblers;
+package com.sigtrans.sigtrans.model.estado;
 
 import com.sigtrans.sigtrans.controller.EnderecoController;
 import com.sigtrans.sigtrans.model.estado.Estado;
