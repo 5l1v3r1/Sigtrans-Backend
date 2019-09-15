@@ -1,5 +1,9 @@
 package com.sigtrans.sigtrans.model.saude.paciente;
 
+import com.sigtrans.sigtrans.model.endereco.estado.Estado;
+
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
+@Data
 @Entity
 public class Paciente {
 

@@ -6,8 +6,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import lombok.Data;
+
 import java.util.Set;
 
+@Data
 @Entity
 public class AnaliseObito {
 
