@@ -1,7 +1,6 @@
-package com.sigtrans.sigtrans.model.estado;
+package com.sigtrans.sigtrans.model.endereco.estado;
 
 import com.sigtrans.sigtrans.controller.EnderecoController;
-import com.sigtrans.sigtrans.model.estado.Estado;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;

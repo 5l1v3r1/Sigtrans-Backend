@@ -1,4 +1,4 @@
-package com.sigtrans.sigtrans.model.estado;
+package com.sigtrans.sigtrans.model.endereco.estado;
 
 public class EstadoNotFoundException extends RuntimeException {
     public EstadoNotFoundException(Long id) {

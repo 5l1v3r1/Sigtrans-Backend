@@ -1,6 +1,6 @@
 package com.sigtrans.sigtrans.controller.advice;
 
-import com.sigtrans.sigtrans.model.estado.EstadoNotFoundException;
+import com.sigtrans.sigtrans.model.endereco.estado.EstadoNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

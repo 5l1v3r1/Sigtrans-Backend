@@ -1,8 +1,8 @@
 package com.sigtrans.sigtrans.controller;
 
-import com.sigtrans.sigtrans.model.estado.EstadoResourceAssembler;
-import com.sigtrans.sigtrans.model.estado.Estado;
-import com.sigtrans.sigtrans.model.estado.EstadoNotFoundException;
+import com.sigtrans.sigtrans.model.endereco.estado.EstadoResourceAssembler;
+import com.sigtrans.sigtrans.model.endereco.estado.Estado;
+import com.sigtrans.sigtrans.model.endereco.estado.EstadoNotFoundException;
 import com.sigtrans.sigtrans.service.implementor.EnderecoService;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
