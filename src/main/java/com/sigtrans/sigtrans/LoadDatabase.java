@@ -16,9 +16,10 @@ import java.util.UUID;
 public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(EstadoRepository estadoRepository, MunicipioRepository municipioRepository) {
-        Estado state = new Estado(UUID.randomUUID(), "Paraná", "PR");
+        UUID partnerId = UUID.randomUUID();
+        Estado state = new Estado(partnerId, "Paraná", "PR");
         estadoRepository.save(state);
-        municipioRepository.save(new Municipio("Cascavel", UUID.randomUUID() , state));
+        municipioRepository.save(new Municipio("Cascavel", partnerId , state));
         return args -> {
             estadoRepository.findAll().forEach(estado -> {
                 log.info("Preloaded " + estado);

@@ -1,5 +1,7 @@
 package com.sigtrans.sigtrans.service.interfac;
 
+import com.sigtrans.sigtrans.model.endereco.rua.Rua;
+import com.sigtrans.sigtrans.model.endereco.bairro.Bairro;
 import com.sigtrans.sigtrans.model.endereco.estado.Estado;
 import com.sigtrans.sigtrans.model.endereco.municipio.Municipio;
 
@@ -11,7 +13,15 @@ public interface IEnderecoService {
 
     List<Municipio> FindAllCities();
 
-    Estado FindStateById(UUID id);
+    List<Bairro> FindAllDistricts();
+
+    List<Rua> FindAllStreets();
+
+    Rua FindStreetById(UUID id);
+
+    Bairro FindDistrictById(UUID id);
 
     Municipio FindCityById(UUID id);
+
+    Estado FindStateById(UUID id);
 }

@@ -4,6 +4,6 @@ import java.util.UUID;
 
 public class EstadoNotFoundException extends RuntimeException {
     public EstadoNotFoundException(UUID id) {
-        super("Could not find state " + id.toString());
+        super("Não foi possível encontrar o Estado " + id.toString());
     }
 }

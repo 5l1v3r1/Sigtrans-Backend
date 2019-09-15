@@ -1,4 +1,4 @@
-package com.sigtrans.sigtrans.model.endereco.estado;
+package com.sigtrans.sigtrans.model.endereco.rua;
 
 import com.sigtrans.sigtrans.controller.EnderecoController;
 import org.springframework.hateoas.Resource;
@@ -9,12 +9,11 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @Component
-public class EstadoResourceAssembler implements ResourceAssembler<Estado, Resource<Estado>> {
+public class RuaResourceAssembler implements ResourceAssembler<Rua, Resource<Rua>> {
     @Override
-    public Resource<Estado> toResource(Estado state) {
-
+    public Resource<Rua> toResource(Rua state) {
         return new Resource<>(state,
-                linkTo(methodOn(EnderecoController.class).oneState(state.getId())).withSelfRel(),
-                linkTo(methodOn(EnderecoController.class).allStates()).withRel("states"));
+                linkTo(methodOn(EnderecoController.class).oneStreet(state.getId())).withSelfRel(),
+                linkTo(methodOn(EnderecoController.class).allStreets()).withRel("streets"));
     }
 }

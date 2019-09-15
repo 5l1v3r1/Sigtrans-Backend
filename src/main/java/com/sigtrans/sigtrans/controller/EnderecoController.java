@@ -1,9 +1,10 @@
 package com.sigtrans.sigtrans.controller;
 
-import com.sigtrans.sigtrans.model.endereco.estado.EstadoResourceAssembler;
+import com.sigtrans.sigtrans.controller.assemblers.EnderecoResourceAssembler;
+import com.sigtrans.sigtrans.model.endereco.rua.Rua;
+import com.sigtrans.sigtrans.model.endereco.bairro.Bairro;
 import com.sigtrans.sigtrans.model.endereco.estado.Estado;
 import com.sigtrans.sigtrans.model.endereco.municipio.Municipio;
-import com.sigtrans.sigtrans.model.endereco.municipio.MunicipioResourceAssembler;
 import com.sigtrans.sigtrans.service.implementor.EnderecoService;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
@@ -25,38 +26,59 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class EnderecoController {
 
     private final EnderecoService service;
-    private final EstadoResourceAssembler stateAssembler;
-    private final MunicipioResourceAssembler cityAssembler;
+    private final EnderecoResourceAssembler enderecoResourceAssembler;
 
-    public EnderecoController(EnderecoService service, EstadoResourceAssembler stateAssembler, MunicipioResourceAssembler cityAssembler) {
+    public EnderecoController(EnderecoService service, EnderecoResourceAssembler enderecoResourceAssembler) {
         this.service = service;
-        this.stateAssembler = stateAssembler;
-        this.cityAssembler = cityAssembler;
+        this.enderecoResourceAssembler = enderecoResourceAssembler;
     }
 
     @GetMapping("/estado")
     public Resources allStates() {
-        Set<Resource<Estado>> states = service.FindAllStates().stream().map(stateAssembler::toResource).collect(Collectors.toSet());
+        Set<Resource<Estado>> states = service.FindAllStates().stream().map(enderecoResourceAssembler.stateAssembler::toResource).collect(Collectors.toSet());
         return new Resources<>(Collections.singleton(states), linkTo(methodOn(EnderecoController.class).allStates()).withSelfRel());
     }
 
     @GetMapping("/estado/{id}")
     public Resource<Estado> oneState(@PathVariable UUID id) {
         Estado state = service.FindStateById(id);
-        return stateAssembler.toResource(state);
+        return enderecoResourceAssembler.stateAssembler.toResource(state);
     }
 
     @GetMapping("/municipio")
     public Resources allCities() {
-        Set<Resource<Municipio>> cities = service.FindAllCities().stream().map(cityAssembler::toResource).collect(Collectors.toSet());
+        Set<Resource<Municipio>> cities = service.FindAllCities().stream().map(enderecoResourceAssembler.cityAssembler::toResource).collect(Collectors.toSet());
         return new Resources<>(Collections.singleton(cities), linkTo(methodOn(EnderecoController.class).allCities()).withSelfRel());
     }
 
-    // Single item
     @GetMapping("/municipio/{id}")
     public Resource<Municipio> oneCity(@PathVariable UUID id) {
         Municipio city = service.FindCityById(id);
-        return cityAssembler.toResource(city);
+        return enderecoResourceAssembler.cityAssembler.toResource(city);
+    }
+
+    @GetMapping("/bairro")
+    public Resources allDistricts() {
+        Set<Resource<Bairro>> districts = service.FindAllDistricts().stream().map(enderecoResourceAssembler.districtAssembler::toResource).collect(Collectors.toSet());
+        return new Resources<>(Collections.singleton(districts), linkTo(methodOn(EnderecoController.class).allCities()).withSelfRel());
+    }
+
+    @GetMapping("/bairro/{id}")
+    public Resource<Bairro> oneDistrict(@PathVariable UUID id) {
+        Bairro district = service.FindDistrictById(id);
+        return enderecoResourceAssembler.districtAssembler.toResource(district);
+    }
+
+    @GetMapping("/rua")
+    public Resources allStreets() {
+        Set<Resource<Rua>> streets = service.FindAllStreets().stream().map(enderecoResourceAssembler.streetAssembler::toResource).collect(Collectors.toSet());
+        return new Resources<>(Collections.singleton(streets), linkTo(methodOn(EnderecoController.class).allCities()).withSelfRel());
+    }
+
+    @GetMapping("/rua/{id}")
+    public Resource<Rua> oneStreet(@PathVariable UUID id) {
+        Rua street = service.FindStreetById(id);
+        return enderecoResourceAssembler.streetAssembler.toResource(street);
     }
 
 }
