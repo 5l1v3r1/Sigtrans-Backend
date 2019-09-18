@@ -1,20 +1,17 @@
-package com.sigtrans.sigtrans.model.ocorrencia;
+package com.sigtrans.sigtrans.model.ocorrencia.dados;
 
 import com.sigtrans.sigtrans.model.endereco.estado.Estado;
 import com.sigtrans.sigtrans.model.endereco.municipio.Municipio;
 import com.sigtrans.sigtrans.model.endereco.rua.Rua;
+import com.sigtrans.sigtrans.model.ocorrencia.GrauInstrucao;
 import com.sigtrans.sigtrans.model.ocorrencia.veiculo.CondicaoSeguranca;
 import com.sigtrans.sigtrans.model.ocorrencia.veiculo.PosicaoVeiculo;
 import com.sigtrans.sigtrans.model.ocorrencia.veiculo.Veiculo;
-import lombok.Data;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-@Data
-@Entity
-public class Envolvido {
+public class DadosGerais {
     @Column(name = "nome")
     private String nome;
 
@@ -81,7 +78,7 @@ public class Envolvido {
     @ManyToOne
     private GrauInstrucao grauInstrucao;
 
-    public Envolvido(String nome, Estado estado, Municipio municipio, Rua rua, String numero, String nomeMae, Veiculo veiculo, PosicaoVeiculo posicaoVeiculo, CondicaoSeguranca condicaoSeguranca, String documento, String orgaoExp, String sexo, String profissao, String nacionalidade, Estado naturalidade, String cpf, String dataNascimento, int idade, String cnh, String validadeCNH, Double etilometria, GrauInstrucao grauInstrucao) {
+    public DadosGerais(String nome, Estado estado, Municipio municipio, Rua rua, String numero, String nomeMae, Veiculo veiculo, PosicaoVeiculo posicaoVeiculo, CondicaoSeguranca condicaoSeguranca, String documento, String orgaoExp, String sexo, String profissao, String nacionalidade, Estado naturalidade, String cpf, String dataNascimento, int idade, String cnh, String validadeCNH, Double etilometria, GrauInstrucao grauInstrucao) {
         this.nome = nome;
         this.estado = estado;
         this.municipio = municipio;
@@ -106,6 +103,7 @@ public class Envolvido {
         this.grauInstrucao = grauInstrucao;
     }
 
-    public Envolvido() {
+    public DadosGerais() {
     }
 }
+

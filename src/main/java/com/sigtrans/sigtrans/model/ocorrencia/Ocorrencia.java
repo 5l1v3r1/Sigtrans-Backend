@@ -2,6 +2,8 @@ package com.sigtrans.sigtrans.model.ocorrencia;
 
 
 import com.sigtrans.sigtrans.model.ocorrencia.dados.DadosEstatisticos;
+import com.sigtrans.sigtrans.model.ocorrencia.dados.DadosGerais;
+import com.sigtrans.sigtrans.model.ocorrencia.veiculo.Veiculo;
 import com.sigtrans.sigtrans.model.usuarios.Parceiro;
 import lombok.Data;
 
